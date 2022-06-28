@@ -1,0 +1,87 @@
+import java.util.*;
+/**
+ * Beginner Java Project #1
+ * WordReverse program that takes in a String value and reverses the order of the 
+ * characters to make a reverse word. 
+ * Project works on variable scope, class instance variables, loop logic, recursion
+ * 
+ * @Jeffery Durant
+ * @June 27th, 2022
+ */
+public class WordReverse{
+    private static String word = ""; 
+
+    public WordReverse(){
+        //no arg constructor
+    }
+
+    public WordReverse(String newWord){
+        this.word = newWord;    
+    }
+
+    public String getWord(){
+        return this.word; 
+    }
+
+    public void setWord(String word){
+        this.word = word; 
+    }
+
+    public static void main(String[] args){ 
+        System.out.println("Type in one word."); 
+        Scanner word = new Scanner(System.in); 
+        String inputtedWord = word.next();
+        System.out.print("You typed: " + inputtedWord + "\n"); 
+        WordReverse a = new WordReverse();
+        a.setWord(inputtedWord); 
+        System.out.print("Word Reversed: "); 
+        reverser();
+        System.out.println(); 
+        boolean startLoop = true; 
+        System.out.println("Would you like to input another word? Enter Y or N"); 
+        String answer = word.next(); 
+        if (answer.equals("Y")){
+            a.loop(true); 
+        } else {
+            System.out.println("Goodbye."); 
+            System.exit(0); 
+        }
+    }
+
+    public void loop(boolean value){
+        while (value == true){
+            System.out.println("Type in a word."); 
+            Scanner word = new Scanner(System.in); 
+            String inputtedWord = word.next();
+            System.out.print("You typed: " + inputtedWord + "\n"); 
+            WordReverse a = new WordReverse();
+            a.setWord(inputtedWord); 
+            System.out.print("Word Reversed: "); 
+            reverser();
+            boolean startLoop = true; 
+            System.out.println("Would you like to input another word? Enter Y or N"); 
+            String answer = word.next(); 
+            if (answer.equals("Y")){
+                a.loop(true); 
+            } else {
+                value = false;
+            }
+        }
+        
+        System.out.println("Goodbye."); 
+        System.exit(0); 
+    }
+
+    public static void reverser(){
+        String[] array = new String[word.length()]; 
+        for (int i = 0; i < word.length(); i++){
+            array[i] = (word.substring(i, i + 1)); 
+        }
+        String reversedWord = ""; 
+        for (int i = array.length - 1; i >= 0; i--){
+            reversedWord += array[i]; 
+        }
+        System.out.println(reversedWord); 
+    }
+}
+
